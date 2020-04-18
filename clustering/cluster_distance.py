@@ -66,13 +66,14 @@ excel_dir = os.path.join(base_dir,excel_file)
 
 df = pd.read_excel(excel_dir, sheet_name='Sheet1', usecols='B,C, D') # x_latitude, y_longititude, cluster_id
 
-
+## range(0,50) 이렇게 된 부분 clustering 했을 때의 클러스터 수 k로 변경해야 k=100이면 range(0,100) 이렇게
 cluster = [0 for i in range(0,50)]
 max_index1 = [0 for i in range(0,50)]
 max_index2 = [0 for i in range(0,50)] #first id, second id
 
 for i in range(0,50) :
     cluster[i] = df[df.cluster_id == i].to_numpy()
+print(len(df))
 
 # print(cluster[0].head)
 # print(cluster[1].head)

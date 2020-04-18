@@ -6,11 +6,11 @@ var circleToPolygon = require('circle-to-polygon')
 
 var workbook = XLSX.readFile('safe_level2_distance.xlsx')
 var xlData = XLSX.utils.sheet_to_json(workbook.Sheets["Sheet1"]);
-console.log(xlData[0].x);
+//console.log(xlData[0].x);
 
 var data = new Array();
-
-for(var i =0; i < 50; i++) {
+//console.log(xlData.length);
+for(var i =0; i < xlData.length ; i++) {
     let polygon = circleToPolygon([xlData[i].x,xlData[i].y],xlData[i].radius,32);
     data[i] = {
         type : "Feature",
@@ -22,8 +22,8 @@ var geojson = {
     features : data
 }
 
-var pleae = JSON.stringify(geojson);
-console.log(pleae);
+var circleGeojson = JSON.stringify(geojson);
+//console.log(pleae);
 // var createGeoJSONCircle = function(center, radiusInKm, points) {
 //     if(!points) points = 64;
 
@@ -70,6 +70,6 @@ console.log(pleae);
 //     console.log(data[i]);
 // }
 // //let data = JSON.stringify(geojson[0]);
-fs.writeFileSync('level2_distance.geojson',pleae);
+fs.writeFileSync('level2_distance.geojson',circleGeojson);
 
 
